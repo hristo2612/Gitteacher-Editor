@@ -16,18 +16,11 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-zip"
+        }
+      ],
       "electronPackagerConfig": {
         "packageManager": "yarn"
       },
