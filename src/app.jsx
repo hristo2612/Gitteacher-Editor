@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 import SearchBar from "./components/SearchBar";
 import OwnerCard from "./components/OwnerCard";
+import RepositoryCard from './components/RepositoryCard';
 import { getRepositoryStats } from "./endpoints";
 import request from "request";
 
@@ -13,6 +14,7 @@ export default class App extends React.Component {
       repoName: "",
       avatarUrl: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg",
       ownerName: "",
+      repositoryName: "...",
     };
     this.searchGithub = this.searchGithub.bind(this);
   }
@@ -21,7 +23,7 @@ export default class App extends React.Component {
     getRepositoryStats("https://github.com/hristo2612/Random-Cat")
       .then(stats => {
         console.log(stats);
-        this.setState({ avatarUrl: stats.owner.avatar_url, ownerName: stats.owner.login });
+        this.setState({ avatarUrl: stats.owner.avatar_url, ownerName: stats.owner.login, repositoryName: stats.name });
       })
       .catch(err => {
         console.log(err);
@@ -41,12 +43,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <div className="grid-container">
         <h2>Gitteacher Editor!</h2>
         <p>Please enter your own repository url then hit GO.</p>
         <SearchBar searchGithub={this.searchGithub} />
         <OwnerCard avatarUrl={this.state.avatarUrl} name={this.state.ownerName}  />
-      </Container>
+        <RepositoryCard name={this.state.repositoryName} />
+      </div>
     );
   }
 }
