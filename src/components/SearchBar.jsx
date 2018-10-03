@@ -5,21 +5,23 @@ export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.timeout = null;
   }
   componentWillMount() {}
 
   handleChange(event, data) {
-    this.props.searchGithub(data.value)
+    clearInterval(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.props.searchGithub(data.value)
+    }, 879);
   }
 
   render() {
     return (
       <div>
-        <Input list="languages" placeholder="Choose language..." onChange={this.handleChange} />
-        <datalist id="languages">
-          <option value="English" />
-          <option value="Chinese" />
-          <option value="Dutch" />
+        <Input style={{ width: '100%' }} list="siteList" autoComplete="on" placeholder="github.com/hristo2612/Gitteacher-Editor" onChange={this.handleChange} />
+        <datalist id="siteList">
+          <option value="github.com/" />
         </datalist>
       </div>
     );
