@@ -2,8 +2,26 @@ body {
     background-color: antiquewhite !important; 
 }
 
+.content {
+    margin: 10px;
+}
+
 .grid-container {
     display: grid;
-    grid-template-columns: 22% 22% auto;
-    grid-template-rows: 22% auto 22%;
+    justify-content: center;
+    margin: 10px;
+    grid-gap: 5px;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: repeat(3, auto);
+}
+
+.item-Owner-Card {
+    grid-column: 3 / span 1;
+    justify-self: end;
+}
+
+.item-Repository-Card {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+    justify-self: end;
 }
